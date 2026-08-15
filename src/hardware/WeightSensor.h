@@ -32,7 +32,11 @@ class WeightSensor : public QObject
     Q_PROPERTY(QString sn READ sn NOTIFY snChanged)
 
 public:
-    explicit WeightSensor(QObject *parent = nullptr);
+    /** @param portName 串口设备路径, 为空时走环境变量 SMARTSCALE_SERIAL_PORT → 默认 /dev/ttyAMA0 */
+    explicit WeightSensor(const QString &portName = QString(),
+                          qint32 baudRate = 9600,
+                          uint8_t slaveAddr = 1,
+                          QObject *parent = nullptr);
     ~WeightSensor();
 
     double netWeight() const;

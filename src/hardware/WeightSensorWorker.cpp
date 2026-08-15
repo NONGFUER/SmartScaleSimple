@@ -6,7 +6,10 @@
 // 构造 / 析构
 // ============================================================================
 
-WeightSensorWorker::WeightSensorWorker(QObject *parent)
+WeightSensorWorker::WeightSensorWorker(const QString &portName,
+                                       qint32 baudRate,
+                                       uint8_t slaveAddr,
+                                       QObject *parent)
     : QObject(parent)
     , m_serial(nullptr)
     , m_pollTimer(new QTimer(this))
@@ -17,6 +20,13 @@ WeightSensorWorker::WeightSensorWorker(QObject *parent)
     , m_readTimeoutMs(DEFAULT_READ_TIMEOUT_MS)
 {
     loadConfigFromEnv();
+
+    // 显式传入的串口参数优先级高于环境变量（双路称重场景）
+    if (!portName.isEmpty()) {
+        m_portName  = portName;
+        m_baudRate  = baudRate;
+        m_slaveAddr = slaveAddr;
+    }
     m_pollTimer->setSingleShot(false);
 
     if (!initSerial()) {

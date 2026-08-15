@@ -89,7 +89,7 @@ ApplicationWindow {
 
                             Text {
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: WeightManager.displayWeight.toFixed(2)
+                                text: WeightManagerLeft.displayWeight.toFixed(2)
                                 font.pixelSize: 120
                                 font.bold: true
                                 font.family: "DIN"
@@ -133,7 +133,7 @@ ApplicationWindow {
                                 anchors.fill: parent
                                 onClicked: {
                                     console.log("[Main] 左模块归零按钮")
-                                    WeightManager.zero()
+                                    WeightManagerLeft.zero()
                                 }
                             }
                         }
@@ -159,7 +159,7 @@ ApplicationWindow {
                                 anchors.fill: parent
                                 onClicked: {
                                     console.log("[Main] 左模块去皮按钮")
-                                    WeightManager.tare()
+                                    WeightManagerLeft.tare()
                                 }
                             }
                         }
@@ -198,7 +198,7 @@ ApplicationWindow {
 
                             Text {
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: WeightManager.displayWeight.toFixed(2)
+                                text: WeightManagerRight.displayWeight.toFixed(2)
                                 font.pixelSize: 120
                                 font.bold: true
                                 font.family: "DIN"
@@ -242,7 +242,7 @@ ApplicationWindow {
                                 anchors.fill: parent
                                 onClicked: {
                                     console.log("[Main] 右模块归零按钮")
-                                    WeightManager.zero()
+                                    WeightManagerRight.zero()
                                 }
                             }
                         }
@@ -267,8 +267,8 @@ ApplicationWindow {
                                 id: tareBtnMa1
                                 anchors.fill: parent
                                 onClicked: {
-                                    console.log("[Main] 左模块去皮按钮")
-                                    WeightManager.tare()
+                                    console.log("[Main] 右模块去皮按钮")
+                                    WeightManagerRight.tare()
                                 }
                             }
                         }

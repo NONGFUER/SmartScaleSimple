@@ -7,7 +7,10 @@
 // 构造 / 析构 — 创建并启动 Worker 线程
 // ============================================================================
 
-WeightSensor::WeightSensor(QObject *parent)
+WeightSensor::WeightSensor(const QString &portName,
+                           qint32 baudRate,
+                           uint8_t slaveAddr,
+                           QObject *parent)
     : QObject(parent)
     , m_workerThread(new QThread(this))
     , m_worker(nullptr)
@@ -17,7 +20,7 @@ WeightSensor::WeightSensor(QObject *parent)
     , m_tareWeight(0.0)
 {
     // 创建 Worker 并移到独立线程
-    m_worker = new WeightSensorWorker();
+    m_worker = new WeightSensorWorker(portName, baudRate, slaveAddr);
     m_worker->moveToThread(m_workerThread);
 
     // 线程结束时自动清理 Worker
@@ -62,7 +65,8 @@ WeightSensor::WeightSensor(QObject *parent)
     connect(m_consumeTimer, &QTimer::timeout, this, &WeightSensor::consumeBuffer);
     m_consumeTimer->start();
 
-    qDebug() << "[WeightSensor] 初始化完成, Worker线程已启动";
+    qDebug() << "[WeightSensor] 初始化完成, Worker线程已启动, 串口:"
+             << (portName.isEmpty() ? QStringLiteral("(环境变量/默认)") : portName);
 }
 
 WeightSensor::~WeightSensor()

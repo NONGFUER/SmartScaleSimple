@@ -113,14 +113,24 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     // ============================================================
-    // 硬件层：称重传感器（飞功 Modbus RTU 通讯）
+    // 硬件层：双路称重传感器（飞功 Modbus RTU 通讯）
+    //   左: /dev/ttyAMA0 (不传参, 保持环境变量 SMARTSCALE_SERIAL_PORT 旧行为)
+    //   右: /dev/ttyAMA1 (可用环境变量 SMARTSCALE_SERIAL_PORT_R 覆盖)
+    //   两路参数相同: 9600 8N1, Modbus slave=1
     // ============================================================
-    WeightSensor *weightSensor = new WeightSensor(&app);
+    WeightSensor *weightSensorLeft = new WeightSensor(QString(), 9600, 1, &app);
+
+    const QByteArray rightPortEnv = qgetenv("SMARTSCALE_SERIAL_PORT_R");
+    const QString rightPort = rightPortEnv.isEmpty()
+            ? QStringLiteral("/dev/ttyAMA1")
+            : QString::fromLocal8Bit(rightPortEnv);
+    WeightSensor *weightSensorRight = new WeightSensor(rightPort, 9600, 1, &app);
 
     // ============================================================
-    // 注入到 QML 全局环境（仅暴露称重）
+    // 注入到 QML 全局环境（左右两路独立单例）
     // ============================================================
-    qmlRegisterSingletonInstance("App.Backend", 1, 0, "WeightManager", weightSensor);
+    qmlRegisterSingletonInstance("App.Backend", 1, 0, "WeightManagerLeft",  weightSensorLeft);
+    qmlRegisterSingletonInstance("App.Backend", 1, 0, "WeightManagerRight", weightSensorRight);
 
     QObject::connect(
         &engine,

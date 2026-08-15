@@ -30,6 +30,9 @@
  *   SMARTSCALE_POLL_INTERVAL_MS  默认 200
  *   SMARTSCALE_READ_TIMEOUT_MS   默认 1000
  *
+ * 双路称重: 构造函数显式传入 portName 时, 串口/波特率/从站地址以参数为准
+ * (优先级高于环境变量); 不传 portName 则保持环境变量旧行为。
+ *
  * 状态字在 emit 前统一归一化到 Feigong 位定义:
  *   Bit0=稳定  Bit1=过载  Bit2=负重  Bit3=去皮
  * (V2 路径在 modbusReadWeight() 内部完成位重映射)
@@ -39,7 +42,11 @@ class WeightSensorWorker : public QObject
     Q_OBJECT
 
 public:
-    explicit WeightSensorWorker(QObject *parent = nullptr);
+    /** @param portName 串口设备路径, 为空时走环境变量 SMARTSCALE_SERIAL_PORT → 默认 /dev/ttyAMA0 */
+    explicit WeightSensorWorker(const QString &portName = QString(),
+                                qint32 baudRate = 9600,
+                                uint8_t slaveAddr = 1,
+                                QObject *parent = nullptr);
     ~WeightSensorWorker();
 
     /** 启动轮询定时器 (必须在 Worker 线程中调用) */
