@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/fonts/PingFangSC-Regular.ttf</file>
+        <file>resources/fonts/din-bold-2.ttf</file>
+        <file>resources/fonts/AlimamaShuHeiTi-Bold.ttf</file>
+    </qresource>
+</RCC>
