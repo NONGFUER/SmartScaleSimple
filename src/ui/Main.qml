@@ -51,15 +51,15 @@ ApplicationWindow {
 
             Row {
                 anchors.fill: parent
-                anchors.leftMargin: 160
-                anchors.rightMargin: 160
+                anchors.leftMargin: 120
+                anchors.rightMargin: 120
                 anchors.topMargin: 0
                 anchors.bottomMargin: 80
-                spacing: 160
+                spacing: 104
 
                 // ============ 左侧模块（去皮）============
                 Column {
-                    width: (parent.width - 160) / 2
+                    width: (parent.width - 104) / 2
                     height: parent.height
                     spacing: 24
                  
@@ -168,7 +168,7 @@ ApplicationWindow {
 
                 // ============ 右侧模块（归零）============
                 Column {
-                    width: (parent.width - 160) / 2
+                    width: (parent.width - 104) / 2
                     height: parent.height
                     spacing: 24
 
