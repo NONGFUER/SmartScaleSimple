@@ -154,8 +154,13 @@ void WeightSensorWorker::poll()
     uint16_t statusWord = 0;
     int32_t adcRaw = 0;
 
-    QMutexLocker locker(&m_serialMutex);
-    int ret = modbusReadWeight(&weightG, &statusWord, &adcRaw);
+    // 锁只包住串口读写本身, restartSerial() 内部会再次加锁,
+    // 若在持锁状态下调用会因 QMutex 非递归而死锁 (热插拔后界面冻结的根因)
+    int ret;
+    {
+        QMutexLocker locker(&m_serialMutex);
+        ret = modbusReadWeight(&weightG, &statusWord, &adcRaw);
+    }
 
     if (ret == 0) {
         m_consecutiveErrors = 0;  // 成功则重置错误计数
