@@ -30,14 +30,14 @@ ApplicationWindow {
                 font.pixelSize: 48
                 font.bold: true
                 font.family: "PingFang SC"
-                color: "#1B263B"
+                color: "#1A5FB4"
             }
 
             // 标题下分隔线
             Rectangle {
                 width: parent.width
                 height: 2
-                color: "#D1D5DB"
+                color: "#BBD3F0"
             }
         }
 
@@ -71,7 +71,7 @@ ApplicationWindow {
                         font.pixelSize: 32
                         font.bold: true
                         font.family: "PingFang SC"
-                        color: "#1B263B"
+                        color: "#1A5FB4"
                     }
 
                     // 重量显示卡片（撑满中间区域）
@@ -80,7 +80,7 @@ ApplicationWindow {
                         height: 150
                         radius: 16
                         color: "#FFFFFF"
-                        border.color: "#D1D5DB"
+                        border.color: "#BBD3F0"
                         border.width: 2
 
                         Row {
@@ -93,7 +93,7 @@ ApplicationWindow {
                                 font.pixelSize: 120
                                 font.bold: true
                                 font.family: "DIN"
-                                color: "#1B263B"
+                                color: "#1A5FB4"
                             }
 
                             Text {
@@ -102,7 +102,7 @@ ApplicationWindow {
                                 font.pixelSize: 40
                                 font.bold: true
                                 font.family: "PingFang SC"
-                                color: "#1B263B"
+                                color: "#1A5FB4"
                             }
                         }
                     }
@@ -117,7 +117,7 @@ ApplicationWindow {
                             width: (parent.width - parent.spacing) / 2
                             height: 110
                             radius: 12
-                            color: zeroBtnMa.pressed ? "#1F2937" : "#374151"
+                            color: zeroBtnMa.pressed ? "#134A8E" : "#1A5FB4"
 
                             Text {
                                 anchors.centerIn: parent
@@ -143,7 +143,7 @@ ApplicationWindow {
                             width: (parent.width - parent.spacing) / 2
                             height: 110
                             radius: 12
-                            color: tareBtnMa.pressed ? "#1F2937" : "#374151"
+                            color: tareBtnMa.pressed ? "#134A8E" : "#1A5FB4"
 
                             Text {
                                 anchors.centerIn: parent
@@ -180,7 +180,7 @@ ApplicationWindow {
                         font.pixelSize: 32
                         font.bold: true
                         font.family: "PingFang SC"
-                        color: "#1B263B"
+                        color: "#1A5FB4"
                     }
 
                     // 重量显示卡片
@@ -189,7 +189,7 @@ ApplicationWindow {
                         height: 150
                         radius: 16
                         color: "#FFFFFF"
-                        border.color: "#D1D5DB"
+                        border.color: "#BBD3F0"
                         border.width: 2
 
                         Row {
@@ -202,7 +202,7 @@ ApplicationWindow {
                                 font.pixelSize: 120
                                 font.bold: true
                                 font.family: "DIN"
-                                color: "#1B263B"
+                                color: "#1A5FB4"
                             }
 
                             Text {
@@ -211,7 +211,7 @@ ApplicationWindow {
                                 font.pixelSize: 40
                                 font.bold: true
                                 font.family: "PingFang SC"
-                                color: "#1B263B"
+                                color: "#1A5FB4"
                             }
                         }
                     }
@@ -226,7 +226,7 @@ ApplicationWindow {
                             width: (parent.width - parent.spacing) / 2
                             height: 110
                             radius: 12
-                            color: zeroBtnMa.pressed ? "#1F2937" : "#374151"
+                            color: zeroBtnMa.pressed ? "#134A8E" : "#1A5FB4"
 
                             Text {
                                 anchors.centerIn: parent
@@ -252,7 +252,7 @@ ApplicationWindow {
                             width: (parent.width - parent.spacing) / 2
                             height: 110
                             radius: 12
-                            color: tareBtnMa.pressed ? "#1F2937" : "#374151"
+                            color: tareBtnMa.pressed ? "#134A8E" : "#1A5FB4"
 
                             Text {
                                 anchors.centerIn: parent
